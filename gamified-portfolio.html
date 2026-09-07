@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nabeeha S. — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#241B3A;
+    --night2:#33285A;
+    --panel:#F2EFFB;
+    --ink:#241B3A;
+    --mint:#7EE8C0;
+    --coral:#FF9472;
+    --gold:#FFD25A;
+    --text-light:#F2EFFB;
+    --text-muted:#B6ACD9;
+    --cut:10px;
+    --cut-sm:6px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  }
+
+  body{
+    margin:0;
+    background:var(--night);
+    background-image:
+      radial-gradient(2px 2px at 10% 20%, rgba(242,239,251,0.35) 0, transparent 100%),
+      radial-gradient(2px 2px at 80% 10%, rgba(242,239,251,0.25) 0, transparent 100%),
+      radial-gradient(1.5px 1.5px at 60% 70%, rgba(242,239,251,0.3) 0, transparent 100%),
+      radial-gradient(1.5px 1.5px at 30% 85%, rgba(242,239,251,0.2) 0, transparent 100%),
+      radial-gradient(2px 2px at 92% 60%, rgba(242,239,251,0.25) 0, transparent 100%);
+    background-attachment:fixed;
+    color:var(--text-light);
+    font-family:'Nunito', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+  }
+
+  h1,h2,h3, .pixel-font{ font-family:'Press Start 2P', monospace; }
+
+  *:focus-visible{ outline:3px dashed var(--gold); outline-offset:3px; }
+
+  a{ color:inherit; }
+
+  img, .avatar-slot{ image-rendering:pixelated; }
+
+  /* ---------- pixel panel shape ---------- */
+  .pixel-cut{
+    clip-path: polygon(
+      0 var(--cut), var(--cut) var(--cut), var(--cut) 0,
+      calc(100% - var(--cut)) 0, calc(100% - var(--cut)) var(--cut), 100% var(--cut),
+      100% calc(100% - var(--cut)), calc(100% - var(--cut)) calc(100% - var(--cut)), calc(100% - var(--cut)) 100%,
+      var(--cut) 100%, var(--cut) calc(100% - var(--cut)), 0 calc(100% - var(--cut))
+    );
+  }
+  .pixel-cut-sm{ --cut: var(--cut-sm); }
+
+  /* ---------- nav ---------- */
+  .mapnav{
+    position:sticky; top:0; z-index:50;
+    background:var(--night);
+    border-bottom:4px solid var(--panel);
+    display:flex; align-items:center; gap:4px;
+    padding:10px 14px;
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+  .mapnav .brand{
+    font-size:11px;
+    margin-right:16px;
+    color:var(--gold);
+  }
+  .mapnav a{
+    text-decoration:none;
+    font-family:'Press Start 2P', monospace;
+    font-size:9px;
+    color:var(--text-light);
+    padding:10px 12px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:2px solid transparent;
+  }
+  .mapnav a:hover, .mapnav a.active{
+    color:var(--night);
+    background:var(--mint);
+    border:2px solid var(--night);
+  }
+
+  /* ---------- layout ---------- */
+  .stage{
+    padding:64px 20px 76px;
+    scroll-margin-top:64px;
+  }
+  .stage-alt{ background:var(--night2); }
+  .stage-inner{
+    max-width:720px;
+    margin:0 auto;
+  }
+  .nameplate{
+    display:flex; align-items:center; gap:14px;
+    margin-bottom:28px;
+  }
+  .nameplate h2{
+    font-size:15px;
+    margin:0;
+    line-height:1.6;
+  }
+  .nameplate .sub{
+    display:block;
+    font-family:'Nunito', sans-serif;
+    font-size:13px;
+    color:var(--text-muted);
+    margin-top:8px;
+    font-weight:600;
+  }
+
+  .panel{
+    background:var(--panel);
+    color:var(--ink);
+    border:4px solid var(--night);
+    box-shadow:6px 6px 0 0 rgba(0,0,0,0.45);
+    padding:26px 28px;
+    --cut:10px;
+  }
+
+  /* ---------- hero ---------- */
+  .stage-hero{ padding-top:56px; }
+  .hero-grid{
+    display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap;
+  }
+  .avatar-slot{
+    flex:0 0 auto;
+    width:132px; height:132px;
+    background:var(--night2);
+    border:4px dashed var(--text-muted);
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    font-size:10px;
+    font-family:'Press Start 2P', monospace;
+    color:var(--text-muted);
+    padding:10px;
+    line-height:1.6;
+    --cut:8px;
+  }
+  .hero-copy{ flex:1 1 320px; min-width:260px; }
+  .hero-copy h1{
+    font-size:clamp(20px, 4vw, 30px);
+    line-height:1.7;
+    margin:0 0 14px;
+    color:var(--gold);
+  }
+  .type-line{
+    font-family:'Press Start 2P', monospace;
+    font-size:12px;
+    color:var(--mint);
+    min-height:1.8em;
+    display:inline-block;
+  }
+  .type-line::after{
+    content:"";
+    display:inline-block;
+    width:9px; height:14px;
+    background:var(--mint);
+    margin-left:3px;
+    vertical-align:-2px;
+    animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+  .hero-meta{
+    margin-top:18px;
+    font-size:15px;
+    color:var(--text-light);
+  }
+  .hero-meta strong{ color:var(--coral); }
+  .hero-ctas{ margin-top:24px; display:flex; gap:12px; flex-wrap:wrap; }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    --cut: var(--cut-sm);
+    font-family:'Press Start 2P', monospace;
+    font-size:10px;
+    text-decoration:none;
+    display:inline-block;
+    padding:14px 18px;
+    background:var(--mint);
+    color:var(--night);
+    border:3px solid var(--night);
+    box-shadow:4px 4px 0 0 var(--night);
+    transition:transform 0.05s linear, box-shadow 0.05s linear;
+    cursor:pointer;
+  }
+  .btn:hover{ background:var(--gold); }
+  .btn:active, .btn:hover:active{
+    transform:translate(4px, 4px);
+    box-shadow:0 0 0 0 var(--night);
+  }
+  .btn.btn-alt{ background:var(--coral); }
+  .btn.btn-muted{ background:var(--panel); color:var(--night); opacity:0.7; cursor:not-allowed; }
+
+  /* ---------- character sheet (about) ---------- */
+  .statline{
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:10px 16px;
+    font-size:15px;
+  }
+  .statline dt{
+    font-family:'Press Start 2P', monospace;
+    font-size:9px;
+    color:#5A4E8A;
+    align-self:start;
+    padding-top:3px;
+  }
+  .statline dd{ margin:0; font-weight:600; }
+  .bio{ margin-top:22px; font-size:15px; }
+
+  /* ---------- stats / skills ---------- */
+  .tier{ margin-bottom:26px; }
+  .tier h3{
+    font-size:11px;
+    color:var(--gold);
+    margin:0 0 6px;
+  }
+  .tier p.tier-note{
+    margin:0 0 12px;
+    font-size:13px;
+    color:var(--text-muted);
+  }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{
+    --cut: 5px;
+    font-size:13px;
+    font-weight:700;
+    padding:8px 14px;
+    border:3px solid var(--night);
+    background:var(--mint);
+    color:var(--night);
+  }
+  .chip.chip-gold{ background:var(--gold); }
+  .chip.chip-outline{ background:transparent; color:var(--text-light); border-color:var(--text-muted); }
+  .chip.chip-dash{ background:transparent; color:var(--text-light); border-style:dashed; border-color:var(--coral); }
+
+  /* ---------- quest log ---------- */
+  .quest{
+    position:relative;
+    padding-left:26px;
+    margin-bottom:26px;
+    border-left:3px dotted var(--text-muted);
+  }
+  .quest::before{
+    content:"";
+    position:absolute; left:-9px; top:2px;
+    width:15px; height:15px;
+    background:var(--gold);
+    border:3px solid var(--night2);
+  }
+  .quest:last-child{ border-left-color:transparent; }
+  .quest-card{ --cut:8px; }
+  .quest-head{
+    display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap;
+    margin-bottom:6px;
+  }
+  .quest-head h3{ margin:0; font-size:14px; color:var(--night); }
+  .quest-status{
+    font-family:'Press Start 2P', monospace;
+    font-size:8px;
+    padding:5px 8px;
+    background:var(--night);
+    color:var(--mint);
+  }
+  .quest-org{ font-size:13px; color:#5A4E8A; font-weight:700; margin-bottom:10px; }
+  .quest ul{ margin:0; padding-left:20px; }
+  .quest li{ margin-bottom:6px; }
+  .placeholder-note{ color:#8b7fc4; font-style:italic; }
+
+  /* ---------- inventory / projects ---------- */
+  .inv-grid{ display:grid; gap:20px; }
+  .item-card{
+    --cut:8px;
+    position:relative;
+  }
+  .item-card .ribbon{
+    position:absolute; top:-10px; right:16px;
+    background:var(--coral);
+    color:var(--night);
+    font-family:'Press Start 2P', monospace;
+    font-size:8px;
+    padding:6px 8px;
+    border:2px solid var(--night);
+  }
+  .item-card h3{ margin:0 0 10px; font-size:14px; color:var(--night); }
+  .item-card p{ margin:0 0 14px; font-size:14.5px; }
+  .tag-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{
+    font-size:12px;
+    font-weight:700;
+    padding:5px 10px;
+    background:var(--night);
+    color:var(--mint);
+    --cut:4px;
+  }
+
+  /* ---------- contact ---------- */
+  .contact-grid{ display:flex; flex-wrap:wrap; gap:14px; margin-top:8px; }
+  .footnote{
+    max-width:720px; margin:52px auto 0; text-align:center;
+    font-size:11px; color:var(--text-muted); font-family:'Press Start 2P', monospace; line-height:2;
+  }
+
+  @media (max-width:600px){
+    .statline{ grid-template-columns:1fr; }
+    .statline dt{ padding-top:0; }
+    .nameplate{ flex-wrap:wrap; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="mapnav" aria-label="Section navigation">
+  <span class="brand pixel-font">◆ SAVE FILE</span>
+  <a href="#about"><span class="picon" data-icon="heart" data-color="#FF9472"></span> About</a>
+  <a href="#stats"><span class="picon" data-icon="sword" data-color="#7EE8C0"></span> Stats</a>
+  <a href="#questlog"><span class="picon" data-icon="scroll" data-color="#FFD25A"></span> Quest Log</a>
+  <a href="#leadership"><span class="picon" data-icon="shield" data-color="#FF9472"></span> Leadership</a>
+  <a href="#inventory"><span class="picon" data-icon="chest" data-color="#7EE8C0"></span> Inventory</a>
+  <a href="#contact"><span class="picon" data-icon="mail" data-color="#FF9472"></span> Contact</a>
+</nav>
+
+<header id="hero" class="stage stage-hero">
+  <div class="stage-inner">
+    <div class="hero-grid">
+      <div class="avatar-slot pixel-cut">[Add your<br>avatar or<br>photo here]</div>
+      <div class="hero-copy">
+        <h1>Nabeeha S.</h1>
+        <span class="type-line" id="typeline"></span>
+        <div class="hero-ctas">
+          <a href="#questlog" class="btn">View Quest Log</a>
+          <a href="#inventory" class="btn btn-alt">Open Inventory</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="about" class="stage">
+  <div class="stage-inner">
+    <div class="nameplate">
+      <span class="picon" data-icon="heart" data-color="#FF9472"></span>
+      <h2>Character Sheet<span class="sub">Little bit on my academic background.</span></h2>
+    </div>
+    <div class="panel pixel-cut">
+      <dl class="statline">
+        <dt>Name</dt><dd>Nabeeha S.</dd>
+        <dt>Discipline</dt><dd>Computer Engineering Student, Software Engineering Specialization</dd>
+        <dt>School</dt><dd>Toronto Metropolitan University</dd>
+        <dt>Expected Graduation</dt><dd>May 2027</dd>
+        <dt>Courses</dt><dd>Computer Programming Fundamentals, Software Systems, Engineering Algorithms and Data Structures, Object-Oriented Engineering Analysis and Design, Operating Systems, Database Systems I</dd>
+      </dl>
+      <p class="bio">Computer Engineering student with a passion for software design, backend development and cloud technologies. Experienced in building scalable applications, developing APIs and solving complex technical challenges through hands-on projects.</p>
+    </div>
+  </div>
+</section>
+
+<section id="stats" class="stage stage-alt">
+  <div class="stage-inner">
+    <div class="nameplate">
+      <span class="picon" data-icon="sword" data-color="#7EE8C0"></span>
+      <h2>Stats — Skills<span class="sub">Grouped honestly by how much hands-on time is behind each one</span></h2>
+    </div>
+
+    <div class="tier">
+      <h3>Languages</h3>
+      <div class="chip-row">
+        <span class="chip">Python</span>
+        <span class="chip">Java</span>
+        <span class="chip">SQL</span>
+        <span class="chip">R</span>
+        <span class="chip">C / C++</span>
+        <span class="chip">HTML</span>
+        <span class="chip">CSS</span>
+        <span class="chip">JavaScript</span>
+        <span class="chip">TypeScript</span>
+        <span class="chip">UML</span>
+      </div>
+    </div>
+
+    <div class="tier">
+      <h3>Frontend</h3>
+      <div class="chip-row">
+        <span class="chip">React</span>
+      </div>
+    </div>
+
+    <div class="tier">
+      <h3>Backend &amp; Data</h3>
+      <div class="chip-row">
+        <span class="chip chip-gold">REST API</span>
+        <span class="chip chip-gold">Spring Boot</span>
+        <span class="chip chip-gold">Node.js / Express</span>
+        <span class="chip chip-gold">MySQL</span>
+        <span class="chip chip-gold">Relational Database Design</span>
+        <span class="chip chip-gold">ER Diagramming</span>
+        <span class="chip chip-gold">Schema Normalization</span>
+        <span class="chip chip-gold">Pandas</span>
+        <span class="chip chip-gold">NumPy</span>
+      </div>
+    </div>
+
+    <div class="tier">
+      <h3>Cloud &amp; DevOps</h3>
+      <div class="chip-row">
+        <span class="chip chip-gold">Google Kubernetes Engine (GKE)</span>
+        <span class="chip chip-gold">Docker</span>
+        <span class="chip chip-gold">Kubernetes</span>
+        <span class="chip chip-outline">AWS (exploring)</span>
+        <span class="chip chip-gold">Linux / Unix</span>
+      </div>
+    </div>
+
+    <div class="tier">
+      <h3>AI / ML</h3>
+      <div class="chip-row">
+        <span class="chip">Sentiment Analysis</span>
+        <span class="chip">LLM-Assisted Analysis (ChatGPT)</span>
+        <span class="chip">Dashboard &amp; Report Creation</span>
+        <span class="chip">AI Coding Assistants (Claude Code, GitHub Copilot)</span>
+      </div>
+    </div>
+
+    <div class="tier">
+      <h3>Tools</h3>
+      <div class="chip-row">
+        <span class="chip">Git / GitHub</span>
+        <span class="chip">JUnit</span>
+        <span class="chip">Google Colab</span>
+        <span class="chip">Microsoft Suite</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="questlog" class="stage">
+  <div class="stage-inner">
+    <div class="nameplate">
+      <span class="picon" data-icon="scroll" data-color="#FFD25A"></span>
+      <h2>Quest Log — Experience<span class="sub">Externships and campus roles, in progress or completed</span></h2>
+    </div>
+
+    <div class="quest">
+      <div class="panel pixel-cut pixel-cut-sm quest-card">
+        <div class="quest-head">
+          <h3>Java Developer Intern</h3>
+          <span class="quest-status">ONGOING</span>
+        </div>
+        <div class="quest-org">She Can Foundation &nbsp;·&nbsp; Aug. 2026 – Present</div>
+        <ul>
+          <li>Developed Java-based web application features using Java and HTML to support education- and mentorship-focused digital solutions.</li>
+          <li>Tested and debugged application functionality, identifying defects, troubleshooting issues, and validating fixes to improve reliability and performance.</li>
+          <li>Integrated third-party APIs and services while participating in code reviews and applying developer feedback.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quest">
+      <div class="panel pixel-cut pixel-cut-sm quest-card">
+        <div class="quest-head">
+          <h3>Data Analytics Extern</h3>
+          <span class="quest-status">COMPLETE</span>
+        </div>
+        <div class="quest-org"> Beats by Dre &nbsp;·&nbsp; Nov. 2025 – Mar. 2026</div>
+        <ul>
+          <li>Analyzed feedback from 85 respondents, including 72 qualified Gen-Z consumers, using AI-assisted research methods (ChatGPT) to identify user pain points, purchasing behavior, and product opportunities.</li>
+          <li>Conducted sentiment analysis using Python, Pandas, NumPy, and Google Colab to identify satisfaction trends and recurring product issues.</li>
+          <li>Translated findings into customer journey maps, dashboards, and visual reports using the AIDA framework to communicate consumer behavior and actionable product insights.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="leadership" class="stage stage-alt">
+  <div class="stage-inner">
+    <div class="nameplate">
+      <span class="picon" data-icon="shield" data-color="#FF9472"></span>
+      <h2>Side Quests — Leadership &amp; Communication<span class="sub">Campus and community roles alongside coursework</span></h2>
+    </div>
+
+    <div class="quest">
+      <div class="panel pixel-cut pixel-cut-sm quest-card">
+        <div class="quest-head">
+          <h3>Hackathon Communications Associate</h3>
+          <span class="quest-status">COMPLETE</span>
+        </div>
+        <div class="quest-org">MetHacks &nbsp;·&nbsp; Sept. 2024 - April 2025</div>
+        <ul>
+          <li>Managed social media and sponsor communications for a hackathon, coordinating messaging across sponsors and participants.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quest">
+      <div class="panel pixel-cut pixel-cut-sm quest-card">
+        <div class="quest-head">
+          <h3>Engineering Student Ambassador</h3>
+          <span class="quest-status">COMPLETE</span>
+        </div>
+        <div class="quest-org">Toronto Metropolitan University &nbsp;·&nbsp; March 2023</div>
+        <ul>
+          <li>Mentored and answered questions from incoming students about the Computer Engineering program, representing the department in a student-facing capacity.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="inventory" class="stage">
+  <div class="stage-inner">
+    <div class="nameplate">
+      <span class="picon" data-icon="chest" data-color="#7EE8C0"></span>
+      <h2>Inventory — Projects<span class="sub">Personal builds, picked up along the way</span></h2>
+    </div>
+
+    <div class="inv-grid">
+      <div class="panel pixel-cut pixel-cut-sm item-card">
+        <span class="ribbon">★ FAVORITE ITEM</span>
+        <h3>Cloud-Native Textbook Marketplace</h3>
+        <p>Collaborated within a team to design and deploy 3 independent Java microservices — FrontEnd, SearchListings, and PurchaseBook — with REST APIs supporting user authentication, product management, and transaction processing. Containerized with Docker and deployed to Google Kubernetes Engine (GKE), with asynchronous event-driven messaging via KubeMQ to reduce coupling. Ran 6 Docker containers (3 services + 3 MySQL databases) with persistent volume claims, LoadBalancer/ClusterIP service types, and Maven build configuration. The strongest technical piece in the collection so far.</p>
+        <div class="tag-row">
+          <span class="tag">Java</span>
+          <span class="tag">REST API</span>
+          <span class="tag">Kubernetes</span>
+          <span class="tag">Docker</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">KubeMQ</span>
+          <span class="tag">Maven</span>
+        </div>
+      </div>
+
+      <div class="panel pixel-cut pixel-cut-sm item-card">
+        <span class="ribbon">🏆 MEC 2ND PLACE</span>
+        <h3>PulsePal — Heart Rate Monitoring App</h3>
+        <p>A heart health monitoring application across 9 modules, featuring ECG visualization, an SOS slider, file-based authentication, and simulated sensor data. Took 2nd Place in the Innovative Design category at the Metropolitan Engineering Competition (MEC), Nov. 2024.</p>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">tkinter</span>
+        </div>
+      </div>
+
+      <div class="panel pixel-cut pixel-cut-sm item-card">
+        <h3>Customer Sentiment Analysis System</h3>
+        <p>A sentiment analysis workflow to clean, transform, and analyze customer review datasets, identifying recurring themes and product concerns. Applied exploratory data analysis (EDA) and built visualizations to surface customer satisfaction trends and patterns.</p>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">Google Colab</span>
+        </div>
+      </div>
+
+      <div class="panel pixel-cut pixel-cut-sm item-card">
+        <h3>Dental Clinic Database Management System</h3>
+        <p>A normalized (3NF/BCNF) relational database with ER diagrams and junction tables to model clinic data and enforce referential integrity, including foreign key constraints and indexing. Originally connected to a university Oracle server, then converted to run locally with SQLite for demos. Wrote and tested SQL queries to validate data integrity across schema relationships, including cascading updates and duplicate-entry edge cases.</p>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">tkinter</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Oracle</span>
+          <span class="tag">SQLite</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="stage">
+  <div class="stage-inner">
+    <div class="nameplate">
+      <span class="picon" data-icon="mail" data-color="#FF9472"></span>
+      <h2>Save Game — Contact<span class="sub">Where to find the rest of the story</span></h2>
+    </div>
+    <div class="panel pixel-cut">
+      <p style="margin-top:0;">Feel free to reach out! :)</p>
+      <div class="contact-grid">
+        <a class="btn" href="mailto:ncbeeha@gmail.com">✉ Email Me </a>
+        <a class="btn btn-alt" href="https://www.linkedin.com/in/nabeeha-s/">My LinkedIn</a>
+        <a class="btn" href="https://github.com/nabeeha-s/">My GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="footnote">◆ END OF FILE — THANKS FOR PLAYING ◆</div>
+<div style="height:40px;"></div>
+
+<script>
+  const ICONS = {
+    heart: [
+      [0,1,1,0,0,1,1,0],
+      [1,1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1,1],
+      [1,1,1,1,1,1,1,1],
+      [0,1,1,1,1,1,1,0],
+      [0,0,1,1,1,1,0,0],
+      [0,0,0,1,1,0,0,0],
+      [0,0,0,0,0,0,0,0]
+    ],
+    sword: [
+      [0,0,0,1,1,0,0,0],
+      [0,0,0,1,1,0,0,0],
+      [0,0,0,1,1,0,0,0],
+      [0,0,0,1,1,0,0,0],
+      [0,1,1,1,1,1,1,0],
+      [0,0,0,1,1,0,0,0],
+      [0,0,1,1,1,1,0,0],
+      [0,0,0,1,1,0,0,0]
+    ],
+    scroll: [
+      [1,1,1,1,1,1,1,1],
+      [1,0,0,0,0,0,0,1],
+      [1,0,1,1,1,1,0,1],
+      [1,0,1,0,0,1,0,1],
+      [1,0,1,0,0,1,0,1],
+      [1,0,1,1,1,1,0,1],
+      [1,0,0,0,0,0,0,1],
+      [1,1,1,1,1,1,1,1]
+    ],
+    chest: [
+      [0,1,1,1,1,1,1,0],
+      [1,1,1,1,1,1,1,1],
+      [1,0,0,0,0,0,0,1],
+      [1,1,1,1,1,1,1,1],
+      [1,0,0,1,1,0,0,1],
+      [1,0,0,1,1,0,0,1],
+      [1,1,1,1,1,1,1,1],
+      [0,1,1,1,1,1,1,0]
+    ],
+    mail: [
+      [1,1,1,1,1,1,1,1],
+      [1,1,0,0,0,0,1,1],
+      [1,0,1,0,0,1,0,1],
+      [1,0,0,1,1,0,0,1],
+      [1,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,1],
+      [1,0,0,0,0,0,0,1],
+      [1,1,1,1,1,1,1,1]
+    ],
+    trophy: [
+      [0,0,1,1,1,1,0,0],
+      [0,1,1,1,1,1,1,0],
+      [0,1,0,1,1,0,1,0],
+      [0,0,1,1,1,1,0,0],
+      [0,0,0,1,1,0,0,0],
+      [0,0,1,1,1,1,0,0],
+      [0,1,1,1,1,1,1,0],
+      [0,0,0,0,0,0,0,0]
+    ],
+    shield: [
+      [0,1,1,1,1,1,1,0],
+      [1,1,1,1,1,1,1,1],
+      [1,1,0,1,1,0,1,1],
+      [1,1,1,1,1,1,1,1],
+      [0,1,1,1,1,1,1,0],
+      [0,0,1,1,1,1,0,0],
+      [0,0,0,1,1,0,0,0],
+      [0,0,0,0,0,0,0,0]
+    ]
+  };
+
+  function renderIcon(el, gridName, color, unit){
+    const grid = ICONS[gridName];
+    if(!grid) return;
+    unit = unit || 3;
+    const cells = [];
+    grid.forEach(function(row, y){
+      row.forEach(function(v, x){
+        if(v) cells.push((x*unit)+'px '+(y*unit)+'px 0 0 '+color);
+      });
+    });
+    const dot = document.createElement('i');
+    dot.style.position = 'absolute';
+    dot.style.top = '0';
+    dot.style.left = '0';
+    dot.style.width = unit+'px';
+    dot.style.height = unit+'px';
+    dot.style.boxShadow = cells.join(',');
+    el.style.position = 'relative';
+    el.style.display = 'inline-block';
+    el.style.width = (grid[0].length*unit)+'px';
+    el.style.height = (grid.length*unit)+'px';
+    el.style.verticalAlign = 'middle';
+    el.appendChild(dot);
+  }
+
+  document.querySelectorAll('[data-icon]').forEach(function(el){
+    renderIcon(el, el.getAttribute('data-icon'), el.getAttribute('data-color') || '#F2EFFB', 3);
+  });
+
+  // one-time typewriter line, respects reduced motion
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var typeEl = document.getElementById('typeline');
+  var fullText = 'Building things. Leveling up. Repeat.';
+  if(typeEl){
+    if(reduceMotion){
+      typeEl.textContent = fullText;
+    } else {
+      var i = 0;
+      typeEl.textContent = '';
+      var iv = setInterval(function(){
+        typeEl.textContent += fullText[i];
+        i++;
+        if(i >= fullText.length) clearInterval(iv);
+      }, 40);
+    }
+  }
+
+  // active nav highlight
+  var sections = document.querySelectorAll('section[id], header[id]');
+  var navLinks = document.querySelectorAll('.mapnav a');
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          navLinks.forEach(function(l){ l.classList.remove('active'); });
+          var match = document.querySelector('.mapnav a[href="#'+entry.target.id+'"]');
+          if(match) match.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -50% 0px' });
+    sections.forEach(function(s){ obs.observe(s); });
+  }
+</script>
+
+</body>
+</html>
